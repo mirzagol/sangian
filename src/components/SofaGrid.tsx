@@ -1,15 +1,20 @@
 import React, { useEffect } from "react";
 import apiClient from "../services/api-client";
 import { Sofa } from "../hooks/useSofas";
-import { SimpleGrid } from "@chakra-ui/react";
+import { SimpleGrid, Skeleton } from "@chakra-ui/react";
 import ItemCard from "./ItemCard";
 import useSofas from "../hooks/useSofas";
+import ItemCardSkeleton from "./ItemCardSkeleton";
 
 const sofaGrid = () => {
-  const { sofas, error } = useSofas();
+  const { sofas, error, isLoading } = useSofas();
+
+  const skeletons = [1, 2, 3, 4, 5, 6];
 
   return (
-    <SimpleGrid columns={3} gap={10}>
+    <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 5 }} gap={10}>
+      {isLoading &&
+        skeletons.map((skeleton) => <ItemCardSkeleton key={skeleton} />)}
       {sofas.map((sofa) => (
         <ItemCard key={sofa.id} sofa={sofa} />
       ))}
