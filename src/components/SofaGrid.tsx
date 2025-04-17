@@ -5,8 +5,16 @@ import useSofas from "../hooks/useSofas";
 import ItemCardSkeleton from "./ItemCardSkeleton";
 import ItemCardContainer from "./ItemCardContainer";
 
-const SofaGrid = () => {
+interface SofaGridProps {
+  selectedCategory: string | null; // Prop to filter sofas
+}
+
+const SofaGrid = ({ selectedCategory }: SofaGridProps) => {
   const { sofas, error, isLoading } = useSofas();
+
+  const filteredSofas = selectedCategory
+    ? sofas.filter((sofa) => sofa.types.includes(selectedCategory)) // Filter sofas by category
+    : sofas;
 
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8];
 
@@ -15,10 +23,10 @@ const SofaGrid = () => {
       {isLoading &&
         skeletons.map((skeleton) => (
           <ItemCardContainer key={skeleton}>
-            <ItemCardSkeleton /> {/* Ensure skeleton matches card dimensions */}
+            <ItemCardSkeleton />
           </ItemCardContainer>
         ))}
-      {sofas.map((sofa) => (
+      {filteredSofas.map((sofa) => (
         <ItemCardContainer key={sofa.id}>
           <ItemCard sofa={sofa} />
         </ItemCardContainer>

@@ -1,9 +1,12 @@
+import React, { useState } from "react";
 import { Grid, GridItem, Show, useBreakpointValue } from "@chakra-ui/react";
 import Navbar from "./components/Navbar";
-import SofaGrid from "./components/SofaGrid"; // Import your actual component
+import SofaGrid from "./components/SofaGrid";
 import Categories from "./components/Categories";
+
 function App() {
   const isLg = useBreakpointValue({ base: false, lg: true });
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null); // State for selected category
 
   return (
     <Grid
@@ -13,7 +16,7 @@ function App() {
       }}
       templateColumns={{
         base: "1fr",
-        lg: "250px",
+        lg: "250px 1fr",
       }}
     >
       <GridItem area="nav">
@@ -21,12 +24,13 @@ function App() {
       </GridItem>
       <Show when={isLg}>
         <GridItem area="side" paddingX={5}>
-          <Categories />
+          <Categories onSelectCategory={setSelectedCategory} />{" "}
+          {/* Pass the setter */}
         </GridItem>
       </Show>
-
       <GridItem area="main">
-        <SofaGrid />
+        <SofaGrid selectedCategory={selectedCategory} />{" "}
+        {/* Pass the selected category */}
       </GridItem>
     </Grid>
   );
