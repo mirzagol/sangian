@@ -5,6 +5,7 @@ import SofaGrid from "./components/SofaGrid";
 import Categories from "./components/Categories";
 import DiningTableGrid from "./components/DiningTableGrid";
 import BedSetGrid from "./components/BedSetGrid";
+import CoffeeTableGrid from "./components/CoffeeTableGrid";
 
 function App() {
   const isLg = useBreakpointValue({ base: false, lg: true });
@@ -34,6 +35,8 @@ function App() {
           <DiningTableGrid />
         ) : selectedCategory === "bed" ? (
           <BedSetGrid />
+        ) : selectedCategory === "table" ? (
+          <CoffeeTableGrid />
         ) : (
           <SofaGrid selectedCategory={selectedCategory} />
         )}

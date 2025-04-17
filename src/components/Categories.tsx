@@ -9,6 +9,7 @@ import lShape from "../assets/icons/l-shape.png";
 import other from "../assets/icons/other.png";
 import sofaBed from "../assets/icons/sofaBed.png";
 import table from "../assets/icons/table.png";
+import cushion from "../assets/icons/cushion.png";
 
 interface category {
   name: string; // English name for the icon
@@ -29,6 +30,7 @@ const Categories = ({ onSelectCategory }: CategoriesProps) => {
     { name: "diningTable", persianName: "عذاخوری", icon: diningTable },
     { name: "bed", persianName: "سرویس خواب", icon: bed },
     { name: "table", persianName: "جلو مبلی و عسلی", icon: table },
+    { name: "cushion", persianName: "کوسن", icon: cushion },
     { name: "other", persianName: "سایر", icon: other },
   ];
 
@@ -52,6 +54,8 @@ const Categories = ({ onSelectCategory }: CategoriesProps) => {
               onSelectCategory("diningTable");
             } else if (category.name === "bed") {
               onSelectCategory("bed");
+            } else if (category.name === "table") {
+              onSelectCategory("table");
             } else if (category.name === "couch") {
               onSelectCategory("راحتی");
             } else if (category.name === "classic") {
