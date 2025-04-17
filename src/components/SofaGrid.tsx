@@ -19,7 +19,7 @@ const SofaGrid = ({ selectedCategory }: SofaGridProps) => {
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8];
 
   return (
-    <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} padding="10px" gap={3}>
+    <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} paddingX="10px" gap={3}>
       {isLoading &&
         skeletons.map((skeleton) => (
           <ItemCardContainer key={skeleton}>

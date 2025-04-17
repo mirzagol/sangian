@@ -11,7 +11,6 @@ import sofaBed from "../assets/icons/sofaBed.png";
 import table from "../assets/icons/table.png";
 
 interface category {
-  id: number;
   name: string; // English name for the icon
   persianName: string; // Persian name to display
   icon: string; // Icon path
@@ -23,14 +22,14 @@ interface CategoriesProps {
 
 const Categories = ({ onSelectCategory }: CategoriesProps) => {
   const data: category[] = [
-    { id: 1, name: "couch", persianName: "مبل راحتی", icon: couch },
-    { id: 2, name: "classic", persianName: "مبل سلطنتی", icon: classic },
-    { id: 3, name: "sofaBed", persianName: "مبل تخت خواب شو", icon: sofaBed },
-    { id: 4, name: "lShape", persianName: "مبل ال", icon: lShape },
-    { id: 5, name: "diningTable", persianName: "عذاخوری", icon: diningTable },
-    { id: 6, name: "bed", persianName: "سرویس خواب", icon: bed },
-    { id: 7, name: "table", persianName: "جلو مبلی و عسلی", icon: table },
-    { id: 8, name: "other", persianName: "سایر", icon: other },
+    { name: "couch", persianName: "مبل راحتی", icon: couch },
+    { name: "classic", persianName: "مبل سلطنتی", icon: classic },
+    { name: "sofaBed", persianName: "مبل تخت خواب شو", icon: sofaBed },
+    { name: "lShape", persianName: "مبل ال", icon: lShape },
+    { name: "diningTable", persianName: "عذاخوری", icon: diningTable },
+    { name: "bed", persianName: "سرویس خواب", icon: bed },
+    { name: "table", persianName: "جلو مبلی و عسلی", icon: table },
+    { name: "other", persianName: "سایر", icon: other },
   ];
 
   const bgColor = useColorModeValue("gray.100", "gray.700");
@@ -39,7 +38,7 @@ const Categories = ({ onSelectCategory }: CategoriesProps) => {
     <List.Root gap={4}>
       {data.map((category) => (
         <ListItem
-          key={category.id}
+          key={category.name}
           listStyleType={"none"}
           paddingY="5px"
           borderRadius="md"
@@ -49,21 +48,18 @@ const Categories = ({ onSelectCategory }: CategoriesProps) => {
           }}
           cursor={"pointer"}
           onClick={() => {
-            if (category.id <= 4) {
-              if (category.id === 1) {
-                onSelectCategory("راحتی"); // Handle category 4 separately
-              }
-              if (category.id === 2) {
-                onSelectCategory("سلطنتی");
-              }
-              if (category.id === 3) {
-                onSelectCategory("تخت خواب شو");
-              }
-              if (category.id === 4) {
-                onSelectCategory("ال");
-              }
+            if (category.name === "diningTable") {
+              onSelectCategory("diningTable");
+            } else if (category.name === "couch") {
+              onSelectCategory("راحتی");
+            } else if (category.name === "classic") {
+              onSelectCategory("سلطنتی");
+            } else if (category.name === "sofaBed") {
+              onSelectCategory("تخت خواب شو");
+            } else if (category.name === "lShape") {
+              onSelectCategory("ال");
             } else {
-              onSelectCategory(null); // Handle categories 5-8 later
+              onSelectCategory(null);
             }
           }}
         >

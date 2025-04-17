@@ -9,8 +9,6 @@ interface Props {
 const ItemCard = ({ sofa }: Props) => {
   return (
     <Card.Root borderRadius="md" overflow="hidden" gap={2}>
-      {" "}
-      {/* Ensure the card has no overflow */}
       <Image
         src={sofa.coverImage}
         alt={sofa.name}
@@ -19,8 +17,6 @@ const ItemCard = ({ sofa }: Props) => {
         objectFit="cover" // Ensure the image covers the area while maintaining aspect ratio
       />
       <Card.Body gap={10} padding="10px">
-        {" "}
-        {/* Add padding for content */}
         <Card.Title fontSize="3xl" fontWeight="black" textAlign="center">
           {sofa.name}
         </Card.Title>
