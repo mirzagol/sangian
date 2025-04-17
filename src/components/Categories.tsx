@@ -50,6 +50,8 @@ const Categories = ({ onSelectCategory }: CategoriesProps) => {
           onClick={() => {
             if (category.name === "diningTable") {
               onSelectCategory("diningTable");
+            } else if (category.name === "bed") {
+              onSelectCategory("bed");
             } else if (category.name === "couch") {
               onSelectCategory("راحتی");
             } else if (category.name === "classic") {

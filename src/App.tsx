@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import SofaGrid from "./components/SofaGrid";
 import Categories from "./components/Categories";
 import DiningTableGrid from "./components/DiningTableGrid";
+import BedSetGrid from "./components/BedSetGrid";
 
 function App() {
   const isLg = useBreakpointValue({ base: false, lg: true });
@@ -31,6 +32,8 @@ function App() {
       <GridItem area="main">
         {selectedCategory === "diningTable" ? (
           <DiningTableGrid />
+        ) : selectedCategory === "bed" ? (
+          <BedSetGrid />
         ) : (
           <SofaGrid selectedCategory={selectedCategory} />
         )}
