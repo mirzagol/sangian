@@ -1,4 +1,3 @@
-import React from "react";
 import { Sofa } from "../hooks/useSofas";
 import { Card, Image, List, ListItem } from "@chakra-ui/react";
 

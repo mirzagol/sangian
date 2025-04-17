@@ -1,4 +1,3 @@
-import React from "react";
 import { SimpleGrid, Text } from "@chakra-ui/react";
 import useDiningTables from "../hooks/useDiningTables";
 import DiningTableCard from "./DiningTableCard";
