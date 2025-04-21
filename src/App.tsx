@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { Grid, GridItem, Show, useBreakpointValue } from "@chakra-ui/react";
+import {
+  Grid,
+  GridItem,
+  Show,
+  HStack,
+  useBreakpointValue,
+} from "@chakra-ui/react";
 import Navbar from "./components/Navbar";
 import SofaGrid from "./components/SofaGrid";
 import Categories from "./components/Categories";
@@ -8,6 +14,7 @@ import BedSetGrid from "./components/BedSetGrid";
 import CoffeeTableGrid from "./components/CoffeeTableGrid";
 import CushionGrid from "./components/CushionGrid";
 import OtherGrid from "./components/OtherGrid";
+import MobileCategoriesDrawer from "./components/MobileCategoriesDrawer";
 
 function App() {
   const isLg = useBreakpointValue({ base: false, lg: true });
@@ -25,7 +32,15 @@ function App() {
       }}
     >
       <GridItem area="nav">
-        <Navbar> </Navbar>
+        <HStack justifyContent="space-between" paddingRight={4}>
+          <Navbar> </Navbar>
+          {!isLg && (
+            <MobileCategoriesDrawer
+              selectedCategory={selectedCategory}
+              onSelectCategory={setSelectedCategory}
+            />
+          )}
+        </HStack>
       </GridItem>
       <Show when={isLg}>
         <GridItem area="side" paddingX={5}>
