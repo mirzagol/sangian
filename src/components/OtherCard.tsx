@@ -1,5 +1,6 @@
 import { Other } from "../hooks/useOthers";
 import { Card, Image, Text, Box } from "@chakra-ui/react";
+import ImageWithFallback from "./ImageWithFallback";
 
 interface Props {
   other: Other;
@@ -8,7 +9,7 @@ interface Props {
 const OtherCard = ({ other }: Props) => {
   return (
     <Card.Root borderRadius="md" overflow="hidden">
-      <Image
+      <ImageWithFallback
         src={other.image_path}
         alt={other.name}
         width="100%"

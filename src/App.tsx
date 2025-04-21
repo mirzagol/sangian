@@ -29,7 +29,10 @@ function App() {
       </GridItem>
       <Show when={isLg}>
         <GridItem area="side" paddingX={5}>
-          <Categories onSelectCategory={setSelectedCategory} />
+          <Categories
+            selectedCategory={selectedCategory}
+            onSelectCategory={setSelectedCategory}
+          />
         </GridItem>
       </Show>
       <GridItem area="main">

@@ -1,5 +1,6 @@
 import { Cushion } from "../hooks/useCushions";
 import { Card, Image, Text, Box } from "@chakra-ui/react";
+import ImageWithFallback from "./ImageWithFallback";
 
 interface Props {
   cushion: Cushion;
@@ -8,7 +9,7 @@ interface Props {
 const CushionCard = ({ cushion }: Props) => {
   return (
     <Card.Root borderRadius="md" overflow="hidden">
-      <Image
+      <ImageWithFallback
         src={cushion.image_path}
         alt={cushion.name}
         width="100%"

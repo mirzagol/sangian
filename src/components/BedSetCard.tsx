@@ -1,5 +1,6 @@
 import { BedSet } from "../hooks/useBedSets";
-import { Card, Image } from "@chakra-ui/react";
+import { Card } from "@chakra-ui/react";
+import ImageWithFallback from "./ImageWithFallback";
 
 interface Props {
   bedSet: BedSet;
@@ -8,7 +9,7 @@ interface Props {
 const BedSetCard = ({ bedSet }: Props) => {
   return (
     <Card.Root borderRadius="md" overflow="hidden">
-      <Image
+      <ImageWithFallback
         src={bedSet.image_path}
         alt={bedSet.name}
         width="100%"

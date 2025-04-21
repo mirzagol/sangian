@@ -1,6 +1,6 @@
 import { CoffeeTable } from "../hooks/useCoffeeTables";
 import { Card, Image } from "@chakra-ui/react";
-
+import ImageWithFallback from "./ImageWithFallback";
 interface Props {
   coffeeTable: CoffeeTable;
 }
@@ -8,7 +8,7 @@ interface Props {
 const CoffeeTableCard = ({ coffeeTable }: Props) => {
   return (
     <Card.Root borderRadius="md" overflow="hidden">
-      <Image
+      <ImageWithFallback
         src={coffeeTable.image_path}
         alt={coffeeTable.name}
         width="100%"

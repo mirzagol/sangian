@@ -1,5 +1,6 @@
 import { Sofa } from "../hooks/useSofas";
 import { Card, Image, List, ListItem } from "@chakra-ui/react";
+import ImageWithFallback from "./ImageWithFallback";
 
 interface Props {
   sofa: Sofa;
@@ -8,7 +9,7 @@ interface Props {
 const ItemCard = ({ sofa }: Props) => {
   return (
     <Card.Root borderRadius="md" overflow="hidden" gap={2}>
-      <Image
+      <ImageWithFallback
         src={sofa.coverImage}
         alt={sofa.name}
         width="100%" // Make the image span the full width of the card

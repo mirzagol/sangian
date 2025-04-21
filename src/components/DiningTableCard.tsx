@@ -1,6 +1,7 @@
 // filepath: /Users/hosseinmirzagol/sangian/src/components/DiningTableCard.tsx
 import { DiningTable } from "../hooks/useDiningTables";
 import { Card, Image } from "@chakra-ui/react";
+import ImageWithFallback from "./ImageWithFallback";
 
 interface Props {
   diningTable: DiningTable;
@@ -9,7 +10,7 @@ interface Props {
 const DiningTableCard = ({ diningTable }: Props) => {
   return (
     <Card.Root borderRadius="md" overflow="hidden" gap={2}>
-      <Image
+      <ImageWithFallback
         src={diningTable.image_path}
         alt={diningTable.name}
         width="100%"

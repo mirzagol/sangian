@@ -1,5 +1,5 @@
+import React from "react";
 import { Image, List, ListItem, HStack, Text } from "@chakra-ui/react";
-
 import { useColorModeValue } from "../components/ui/color-mode";
 import bed from "../assets/icons/bed.png";
 import classic from "../assets/icons/classic.png";
@@ -12,16 +12,20 @@ import table from "../assets/icons/table.png";
 import cushion from "../assets/icons/cushion.png";
 
 interface category {
-  name: string; // English name for the icon
-  persianName: string; // Persian name to display
-  icon: string; // Icon path
+  name: string;
+  persianName: string;
+  icon: string;
 }
 
 interface CategoriesProps {
-  onSelectCategory: (category: string | null) => void; // Prop to handle category selection
+  onSelectCategory: (category: string | null) => void;
+  selectedCategory: string | null;
 }
 
-const Categories = ({ onSelectCategory }: CategoriesProps) => {
+const Categories = ({
+  onSelectCategory,
+  selectedCategory,
+}: CategoriesProps) => {
   const data: category[] = [
     { name: "couch", persianName: "مبل راحتی", icon: couch },
     { name: "classic", persianName: "مبل سلطنتی", icon: classic },
@@ -34,56 +38,54 @@ const Categories = ({ onSelectCategory }: CategoriesProps) => {
     { name: "other", persianName: "سایر", icon: other },
   ];
 
+  // Map English name to the value you use in onSelectCategory
+  const categoryValueMap: Record<string, string> = {
+    diningTable: "diningTable",
+    bed: "bed",
+    table: "table",
+    cushion: "cushion",
+    other: "other",
+    couch: "راحتی",
+    classic: "سلطنتی",
+    sofaBed: "تخت خواب شو",
+    lShape: "ال",
+  };
+
   const bgColor = useColorModeValue("gray.100", "gray.700");
+  const selectedBg = useColorModeValue("blue.200", "blue.700");
 
   return (
     <List.Root gap={4}>
-      {data.map((category) => (
-        <ListItem
-          key={category.name}
-          listStyleType={"none"}
-          paddingY="5px"
-          borderRadius="md"
-          backgroundColor={bgColor}
-          _hover={{
-            backgroundColor: useColorModeValue("gray.200", "gray.600"),
-          }}
-          cursor={"pointer"}
-          onClick={() => {
-            if (category.name === "diningTable") {
-              onSelectCategory("diningTable");
-            } else if (category.name === "bed") {
-              onSelectCategory("bed");
-            } else if (category.name === "table") {
-              onSelectCategory("table");
-            } else if (category.name === "cushion") {
-              onSelectCategory("cushion");
-            } else if (category.name === "other") {
-              onSelectCategory("other");
-            } else if (category.name === "couch") {
-              onSelectCategory("راحتی");
-            } else if (category.name === "classic") {
-              onSelectCategory("سلطنتی");
-            } else if (category.name === "sofaBed") {
-              onSelectCategory("تخت خواب شو");
-            } else if (category.name === "lShape") {
-              onSelectCategory("ال");
-            } else {
-              onSelectCategory(null);
-            }
-          }}
-        >
-          <HStack>
-            <Image
-              src={category.icon}
-              alt={category.name}
-              boxSize="30px"
-              padding="5px"
-            />
-            <Text paddingX={3}>{category.persianName}</Text>
-          </HStack>
-        </ListItem>
-      ))}
+      {data.map((category) => {
+        const value = categoryValueMap[category.name];
+        const isSelected = selectedCategory === value;
+        return (
+          <ListItem
+            key={category.name}
+            listStyleType={"none"}
+            paddingY="5px"
+            borderRadius="md"
+            backgroundColor={isSelected ? selectedBg : bgColor}
+            _hover={{
+              backgroundColor: isSelected
+                ? selectedBg
+                : useColorModeValue("gray.200", "gray.600"),
+            }}
+            cursor={"pointer"}
+            onClick={() => onSelectCategory(value)}
+          >
+            <HStack>
+              <Image
+                src={category.icon}
+                alt={category.name}
+                boxSize="30px"
+                padding="5px"
+              />
+              <Text paddingX={3}>{category.persianName}</Text>
+            </HStack>
+          </ListItem>
+        );
+      })}
     </List.Root>
   );
 };
