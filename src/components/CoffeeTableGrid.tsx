@@ -7,7 +7,7 @@ import CoffeeTableSkeleton from "./CoffeeTableSkeleton";
 const CoffeeTableGrid = () => {
   const { coffeeTables, error, isLoading } = useCoffeeTables();
 
-  const skeletons = [1, 2, 3, 4];
+  const skeletons = [1, 2, 3, 4, 5, 6, 7, 8];
 
   if (error) return <Text color="red.500">Error: {error}</Text>;
 

@@ -1,27 +1,27 @@
-import { BedSet } from "../hooks/useBedSets";
-import { Card, Image } from "@chakra-ui/react";
+import { Other } from "../hooks/useOthers";
+import { Card, Image, Text, Box } from "@chakra-ui/react";
 
 interface Props {
-  bedSet: BedSet;
+  other: Other;
 }
 
-const BedSetCard = ({ bedSet }: Props) => {
+const OtherCard = ({ other }: Props) => {
   return (
     <Card.Root borderRadius="md" overflow="hidden">
       <Image
-        src={bedSet.image_path}
-        alt={bedSet.name}
+        src={other.image_path}
+        alt={other.name}
         width="100%"
         height="200px"
         objectFit="cover"
       />
       <Card.Body gap={10} padding="10px">
         <Card.Title fontSize="3xl" fontWeight="black" textAlign="center">
-          {bedSet.name}
+          {other.name}
         </Card.Title>
       </Card.Body>
     </Card.Root>
   );
 };
 
-export default BedSetCard;
+export default OtherCard;

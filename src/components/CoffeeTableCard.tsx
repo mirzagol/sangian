@@ -16,7 +16,7 @@ const CoffeeTableCard = ({ coffeeTable }: Props) => {
         objectFit="cover"
       />
       <Card.Body gap={10} padding="10px">
-        <Card.Title fontSize="3xl" fontWeight="black" textAlign="center">
+        <Card.Title fontSize="3ßxl" fontWeight="black" textAlign="center">
           {coffeeTable.name}
         </Card.Title>
       </Card.Body>

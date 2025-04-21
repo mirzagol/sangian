@@ -56,6 +56,10 @@ const Categories = ({ onSelectCategory }: CategoriesProps) => {
               onSelectCategory("bed");
             } else if (category.name === "table") {
               onSelectCategory("table");
+            } else if (category.name === "cushion") {
+              onSelectCategory("cushion");
+            } else if (category.name === "other") {
+              onSelectCategory("other");
             } else if (category.name === "couch") {
               onSelectCategory("راحتی");
             } else if (category.name === "classic") {

@@ -1,10 +1,10 @@
 import { SimpleGrid, Text } from "@chakra-ui/react";
-import useBedSets from "../hooks/useBedSets";
-import BedSetCard from "./BedSetCard";
+import useCushions from "../hooks/useCushions";
+import CushionCard from "./CushionCard";
 import BedSetSkeleton from "./BedSetSkeleton";
 
-const BedSetGrid = () => {
-  const { bedSets, error, isLoading } = useBedSets();
+const CushionGrid = () => {
+  const { cushions, error, isLoading } = useCushions();
 
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8];
 
@@ -19,9 +19,11 @@ const BedSetGrid = () => {
       {isLoading &&
         skeletons.map((skeleton) => <BedSetSkeleton key={skeleton} />)}
       {!isLoading &&
-        bedSets.map((bedSet) => <BedSetCard key={bedSet.id} bedSet={bedSet} />)}
+        cushions.map((cushion) => (
+          <CushionCard key={cushion.id} cushion={cushion} />
+        ))}
     </SimpleGrid>
   );
 };
 
-export default BedSetGrid;
+export default CushionGrid;
