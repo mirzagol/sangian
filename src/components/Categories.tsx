@@ -1,4 +1,3 @@
-import React from "react";
 import { Image, List, ListItem, HStack, Text } from "@chakra-ui/react";
 import { useColorModeValue } from "../components/ui/color-mode";
 import bed from "../assets/icons/bed.png";

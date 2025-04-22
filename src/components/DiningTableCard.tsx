@@ -1,6 +1,6 @@
 // filepath: /Users/hosseinmirzagol/sangian/src/components/DiningTableCard.tsx
 import { DiningTable } from "../hooks/useDiningTables";
-import { Card, Image } from "@chakra-ui/react";
+import { Card } from "@chakra-ui/react";
 import ImageWithFallback from "./ImageWithFallback";
 
 interface Props {

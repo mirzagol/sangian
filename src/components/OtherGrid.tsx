@@ -1,4 +1,3 @@
-import React from "react";
 import { SimpleGrid, Text } from "@chakra-ui/react";
 import useOthers from "../hooks/useOthers";
 import OtherCard from "./OtherCard";

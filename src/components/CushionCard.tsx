@@ -1,5 +1,5 @@
 import { Cushion } from "../hooks/useCushions";
-import { Card, Image, Text, Box } from "@chakra-ui/react";
+import { Card } from "@chakra-ui/react";
 import ImageWithFallback from "./ImageWithFallback";
 
 interface Props {

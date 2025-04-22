@@ -1,5 +1,5 @@
 import { CoffeeTable } from "../hooks/useCoffeeTables";
-import { Card, Image } from "@chakra-ui/react";
+import { Card } from "@chakra-ui/react";
 import ImageWithFallback from "./ImageWithFallback";
 interface Props {
   coffeeTable: CoffeeTable;

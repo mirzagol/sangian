@@ -1,5 +1,5 @@
 import { Sofa } from "../hooks/useSofas";
-import { Card, Image, List, ListItem } from "@chakra-ui/react";
+import { Card, List, ListItem } from "@chakra-ui/react";
 import ImageWithFallback from "./ImageWithFallback";
 
 interface Props {

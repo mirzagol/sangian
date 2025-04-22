@@ -1,4 +1,4 @@
-import { SimpleGrid } from "@chakra-ui/react";
+import { SimpleGrid, Text } from "@chakra-ui/react";
 import ItemCard from "./ItemCard";
 import useSofas from "../hooks/useSofas";
 import ItemCardSkeleton from "./ItemCardSkeleton";
@@ -16,6 +16,10 @@ const SofaGrid = ({ selectedCategory }: SofaGridProps) => {
     : sofas;
 
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8];
+
+  if (error) {
+    return <Text color="red.500">Failed to load sofas: {error}</Text>;
+  }
 
   return (
     <SimpleGrid
