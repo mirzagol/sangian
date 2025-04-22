@@ -30,7 +30,7 @@ const Categories = ({
     { name: "classic", persianName: "مبل سلطنتی", icon: classic },
     { name: "sofaBed", persianName: "مبل تخت خواب شو", icon: sofaBed },
     { name: "lShape", persianName: "مبل ال", icon: lShape },
-    { name: "diningTable", persianName: "عذاخوری", icon: diningTable },
+    { name: "diningTable", persianName: "غذاخوری", icon: diningTable },
     { name: "bed", persianName: "سرویس خواب", icon: bed },
     { name: "table", persianName: "جلو مبلی و عسلی", icon: table },
     { name: "cushion", persianName: "کوسن", icon: cushion },
