@@ -15,6 +15,7 @@ const SofaImageSlider = ({ images, name }: Props) => {
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState<"left" | "right" | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
@@ -23,12 +24,28 @@ const SofaImageSlider = ({ images, name }: Props) => {
 
   useEffect(() => {
     setCurrent(0);
-    if (images) {
-      images.forEach((src) => {
-        const img = new window.Image();
-        img.src = src;
-      });
+    if (!images || images.length === 0) {
+      setLoading(false);
+      return;
     }
+    let loaded = 0;
+    setLoading(true);
+    images.forEach((src) => {
+      const img = new window.Image();
+      img.src = src;
+      img.onload = () => {
+        loaded += 1;
+        if (loaded === images.length) {
+          setLoading(false);
+        }
+      };
+      img.onerror = () => {
+        loaded += 1;
+        if (loaded === images.length) {
+          setLoading(false);
+        }
+      };
+    });
   }, [images]);
 
   const animateTo = (nextIdx: number, dir: "left" | "right") => {
@@ -131,6 +148,7 @@ const SofaImageSlider = ({ images, name }: Props) => {
         alt={name}
         transition={transition}
         transform={transform}
+        loading={loading}
       />
       {images.length > 1 && (
         <>

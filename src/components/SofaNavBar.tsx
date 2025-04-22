@@ -9,7 +9,13 @@ interface Props {
 
 const SofaNavBar = ({ onBack, name }: Props) => (
   <Flex align="center" mb={4} justify="space-between">
-    <Icon aria-label="Back to main menu" onClick={onBack} mr={2}>
+    <Icon
+      aria-label="Back to main menu"
+      onClick={onBack}
+      mr={2}
+      scale={2}
+      cursor="pointer"
+    >
       <MdArrowBack />
     </Icon>
     <Heading size="md">{name}</Heading>
