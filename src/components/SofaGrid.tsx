@@ -3,6 +3,7 @@ import ItemCard from "./ItemCard";
 import useSofas from "../hooks/useSofas";
 import ItemCardSkeleton from "./ItemCardSkeleton";
 import ItemCardContainer from "./ItemCardContainer";
+import { useNavigate } from "react-router-dom";
 
 interface SofaGridProps {
   selectedCategory: string | null; // Prop to filter sofas
@@ -10,6 +11,7 @@ interface SofaGridProps {
 
 const SofaGrid = ({ selectedCategory }: SofaGridProps) => {
   const { sofas, error, isLoading } = useSofas();
+  const navigate = useNavigate();
 
   const filteredSofas = selectedCategory
     ? sofas.filter((sofa) => sofa.types.includes(selectedCategory)) // Filter sofas by category
@@ -35,7 +37,12 @@ const SofaGrid = ({ selectedCategory }: SofaGridProps) => {
         ))}
       {filteredSofas.map((sofa) => (
         <ItemCardContainer key={sofa.id}>
-          <ItemCard sofa={sofa} />
+          <div
+            style={{ cursor: "pointer" }}
+            onClick={() => navigate(`/sofa/${sofa.id}`)}
+          >
+            <ItemCard sofa={sofa} />
+          </div>
         </ItemCardContainer>
       ))}
     </SimpleGrid>
