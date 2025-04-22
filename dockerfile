@@ -1,7 +1,8 @@
 FROM node:20.16.0-alpine as build
 
-ARG NODE_ENV
-ARG APP_ENV
+# Hardcoded environment variables (if you need them at build time)
+ENV NODE_ENV=production
+ENV APP_ENV=production
 
 RUN echo "Node Env: $NODE_ENV"
 RUN echo "App Env: $APP_ENV"
