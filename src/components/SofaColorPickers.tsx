@@ -1,18 +1,23 @@
 import { Box, Heading, Flex } from "@chakra-ui/react";
+import { Frame, Fabric } from "../hooks/useSofaOptions";
 
-const fabricColors = [
-  "#D2B48C",
-  "#F5DEB3",
-  "#E5C298",
-  "#F3E2C7",
-  "#C2B280",
-  "#BDB76B",
-  "#556B2F",
-  "#CD853F",
-];
-const frameColors = ["#8B4513", "#A0522D", "#654321"];
+interface Props {
+  frames: Frame[];
+  fabrics: Fabric[];
+  selectedFrame: Frame | null;
+  selectedFabric: Fabric | null;
+  onFrameSelect: (frame: Frame) => void;
+  onFabricSelect: (fabric: Fabric) => void;
+}
 
-const SofaColorPickers = () => (
+const SofaColorPickers = ({
+  frames,
+  fabrics,
+  selectedFrame,
+  selectedFabric,
+  onFrameSelect,
+  onFabricSelect,
+}: Props) => (
   <Box
     dir="rtl"
     height="100%"
@@ -20,45 +25,62 @@ const SofaColorPickers = () => (
     flexDirection="column"
     justifyContent="flex-end"
   >
-    <Box>
-      <Heading size="lg" mb={2} textAlign="right">
+    <Box mb={4}>
+      <Heading size="md" mb={2} textAlign="right">
         انتخاب پارچه
       </Heading>
-      <Flex
-        wrap="wrap"
-        gap={2}
-        justify="flex-end"
-        flexDirection="row-reverse"
-        mb={0}
-      >
-        {fabricColors.map((color) => (
+      <Flex wrap="wrap" gap={2} justify="flex-end" flexDirection="row-reverse">
+        {fabrics.map((fabric) => (
           <Box
-            key={color}
+            key={fabric.id}
             w="50px"
             h="50px"
             borderRadius="full"
-            bg={color}
-            border="2px solid #eee"
+            bg={fabric.color}
+            border={
+              selectedFabric?.id === fabric.id
+                ? "3px solid #1976d2"
+                : "2px solid #eee"
+            }
             mb={1}
+            cursor="pointer"
+            boxShadow={selectedFabric?.id === fabric.id ? "md" : "none"}
+            onClick={() => onFabricSelect(fabric)}
+            title={fabric.name}
           />
         ))}
       </Flex>
     </Box>
-    <Box mt={4}>
-      <Heading size="lg" mb={2} textAlign="right">
+    <Box>
+      <Heading size="md" mb={2} textAlign="right">
         انتخاب چوب
       </Heading>
       <Flex wrap="wrap" gap={2} justify="flex-end" flexDirection="row-reverse">
-        {frameColors.map((color) => (
+        {frames.map((frame) => (
           <Box
-            key={color}
+            key={frame.id}
             w="50px"
             h="50px"
             borderRadius="full"
-            bg={color}
-            border="2px solid #eee"
+            bg="#8B4513"
+            border={
+              selectedFrame?.id === frame.id
+                ? "3px solid #1976d2"
+                : "2px solid #eee"
+            }
             mb={1}
-          />
+            cursor="pointer"
+            boxShadow={selectedFrame?.id === frame.id ? "md" : "none"}
+            onClick={() => onFrameSelect(frame)}
+            title={frame.name}
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            color="white"
+            fontSize="sm"
+          >
+            {frame.name}
+          </Box>
         ))}
       </Flex>
     </Box>
