@@ -20,8 +20,23 @@ const useOthers = () => {
     apiClient
       .get<Other[]>("/others", { signal: controller.signal })
       .then((res) => {
-        setOthers(res.data);
-        setLoading(false);
+        const othersData = res.data;
+
+        // Preload images
+        const imagePromises = othersData.map(
+          (other) =>
+            new Promise<void>((resolve) => {
+              const img = new window.Image();
+              img.src = other.image_path;
+              img.onload = () => resolve();
+              img.onerror = () => resolve(); // Resolve even if image fails to load
+            })
+        );
+
+        Promise.all(imagePromises).then(() => {
+          setOthers(othersData);
+          setLoading(false);
+        });
       })
       .catch((err) => {
         if (err.name === "CanceledError") return;

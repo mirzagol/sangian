@@ -26,8 +26,23 @@ const useBedSets = () => {
         signal: controller.signal,
       })
       .then((res) => {
-        setBedSets(res.data.dining_table_models);
-        setLoading(false);
+        const models = res.data.dining_table_models;
+
+        // Preload images
+        const imagePromises = models.map(
+          (bedSet) =>
+            new Promise<void>((resolve) => {
+              const img = new window.Image();
+              img.src = bedSet.image_path;
+              img.onload = () => resolve();
+              img.onerror = () => resolve();
+            })
+        );
+
+        Promise.all(imagePromises).then(() => {
+          setBedSets(models);
+          setLoading(false);
+        });
       })
       .catch((err) => {
         if (err.name === "CanceledError") return;

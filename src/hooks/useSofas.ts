@@ -29,7 +29,7 @@ const useSofas = () => {
 
         // Preload all images
         const imagePromises = fetchedSofas.map((sofa) => {
-          return new Promise<void>((resolve, reject) => {
+          return new Promise<void>((resolve) => {
             const img = new Image();
             img.src = sofa.coverImage;
             img.onload = () => resolve(); // Resolve when the image is loaded

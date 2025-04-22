@@ -26,8 +26,23 @@ const useCushions = () => {
         signal: controller.signal,
       })
       .then((res) => {
-        setCushions(res.data.cushion_models);
-        setLoading(false);
+        const models = res.data.cushion_models;
+
+        // Preload images
+        const imagePromises = models.map(
+          (cushion) =>
+            new Promise<void>((resolve) => {
+              const img = new window.Image();
+              img.src = cushion.image_path;
+              img.onload = () => resolve();
+              img.onerror = () => resolve();
+            })
+        );
+
+        Promise.all(imagePromises).then(() => {
+          setCushions(models);
+          setLoading(false);
+        });
       })
       .catch((err) => {
         if (err.name === "CanceledError") return;

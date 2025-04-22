@@ -26,8 +26,23 @@ const useCoffeeTables = () => {
         signal: controller.signal,
       })
       .then((res) => {
-        setCoffeeTables(res.data.coffee_table_models);
-        setLoading(false);
+        const models = res.data.coffee_table_models;
+
+        // Preload images
+        const imagePromises = models.map(
+          (table) =>
+            new Promise<void>((resolve) => {
+              const img = new window.Image();
+              img.src = table.image_path;
+              img.onload = () => resolve();
+              img.onerror = () => resolve();
+            })
+        );
+
+        Promise.all(imagePromises).then(() => {
+          setCoffeeTables(models);
+          setLoading(false);
+        });
       })
       .catch((err) => {
         if (err.name === "CanceledError") return;

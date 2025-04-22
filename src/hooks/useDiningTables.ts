@@ -26,8 +26,23 @@ const useDiningTables = () => {
         signal: controller.signal,
       })
       .then((res) => {
-        setDiningTables(res.data.dining_table_models);
-        setLoading(false);
+        const tables = res.data.dining_table_models;
+
+        // Preload images
+        const imagePromises = tables.map(
+          (table) =>
+            new Promise<void>((resolve) => {
+              const img = new window.Image();
+              img.src = table.image_path;
+              img.onload = () => resolve();
+              img.onerror = () => resolve();
+            })
+        );
+
+        Promise.all(imagePromises).then(() => {
+          setDiningTables(tables);
+          setLoading(false);
+        });
       })
       .catch((err) => {
         if (err.name === "CanceledError") return;
