@@ -29,7 +29,7 @@ const SofaColorPickers = ({
       <Heading size="md" mb={2} textAlign="right">
         انتخاب پارچه
       </Heading>
-      <Flex wrap="wrap" gap={2} justify="flex-end" flexDirection="row-reverse">
+      <Flex wrap="wrap" gap={2} justify="flex-start" flexDirection="row">
         {fabrics.map((fabric) => (
           <Box
             key={fabric.id}
@@ -55,31 +55,39 @@ const SofaColorPickers = ({
       <Heading size="md" mb={2} textAlign="right">
         انتخاب چوب
       </Heading>
-      <Flex wrap="wrap" gap={2} justify="flex-end" flexDirection="row-reverse">
+      <Flex wrap="wrap" gap={2} justify="flex-start" flexDirection="row">
         {frames.map((frame) => (
           <Box
             key={frame.id}
-            w="50px"
-            h="50px"
-            borderRadius="full"
-            bg="#8B4513"
-            border={
-              selectedFrame?.id === frame.id
-                ? "3px solid #1976d2"
-                : "2px solid #eee"
-            }
-            mb={1}
-            cursor="pointer"
-            boxShadow={selectedFrame?.id === frame.id ? "md" : "none"}
-            onClick={() => onFrameSelect(frame)}
-            title={frame.name}
             display="flex"
+            flexDirection="column"
             alignItems="center"
-            justifyContent="center"
-            color="white"
-            fontSize="sm"
+            w="50px"
           >
-            {frame.name}
+            <Box
+              w="50px"
+              h="50px"
+              borderRadius="full"
+              bg="#8B4513"
+              border={
+                selectedFrame?.id === frame.id
+                  ? "3px solid #1976d2"
+                  : "2px solid #eee"
+              }
+              mb={1}
+              cursor="pointer"
+              boxShadow={selectedFrame?.id === frame.id ? "md" : "none"}
+              onClick={() => onFrameSelect(frame)}
+              title={frame.name}
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              color="white"
+              fontSize="sm"
+            />
+            <Box fontSize="xs" mt="1px" textAlign="center">
+              {frame.name}
+            </Box>
           </Box>
         ))}
       </Flex>
