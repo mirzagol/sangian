@@ -1,5 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap");
 
-body {
-  font-family: Vazirmatn;
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+div,
+button,
+input,
+textarea,
+a {
+  font-family: Vazirmatn, sans-serif !important;
 }

@@ -1,25 +1,54 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import useSofas, { Sofa } from "../hooks/useSofas";
-import { Box, Heading, Text, Spinner } from "@chakra-ui/react";
+import useSofas from "../hooks/useSofas";
+import { Box, Spinner, Grid } from "@chakra-ui/react";
+import SofaNavBar from "./SofaNavBar";
+import SofaImageSlider from "./SofaImageSlider";
+import SofaColorPickers from "./SofaColorPickers";
+import SofaDescription from "./SofaDescription";
+
+interface SofaDetailModel {
+  id: number;
+  name: string;
+  description?: string;
+  images?: string[];
+}
 
 const SofaDetail = () => {
   const { id } = useParams<{ id: string }>();
   const { sofas, isLoading } = useSofas();
-  const [sofa, setSofa] = useState<Sofa | undefined>();
+  const [sofa, setSofa] = useState<SofaDetailModel | undefined>();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (sofas.length > 0 && id) {
-      setSofa(sofas.find((s) => s.id === Number(id)));
+      const found = sofas.find((s: any) => s.id === Number(id));
+      if (found) {
+        setSofa(found as SofaDetailModel);
+      }
     }
   }, [sofas, id]);
 
   if (isLoading || !sofa) return <Spinner />;
 
   return (
-    <Box p={6}>
-      <Heading mb={4}>{sofa.name}</Heading>
-      <Text>ID: {sofa.id}</Text>
+    <Box p={4}>
+      <SofaNavBar onBack={() => navigate("/")} name={sofa.name} />
+      <Grid
+        templateColumns={{ base: "1fr", lg: "1fr 2fr" }} // 2 columns on desktop, 1 on mobile
+        gap={6}
+        alignItems="start"
+      >
+        {/* On desktop: left = color pickers, right = image slider */}
+        {/* On mobile: image slider on top, color pickers below */}
+        <Box order={{ base: 1, lg: 2 }}>
+          <SofaImageSlider images={sofa.images || []} name={sofa.name} />
+        </Box>
+        <Box order={{ base: 2, lg: 1 }}>
+          <SofaColorPickers />
+        </Box>
+      </Grid>
+      <SofaDescription description={sofa.description} />
     </Box>
   );
 };
