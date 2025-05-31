@@ -24,11 +24,11 @@ function App() {
     <Grid
       templateAreas={{
         base: `"nav" "main"`,
-        lg: `"nav nav" "side main"`,
+        lg: `"nav nav" "main side "`,
       }}
       templateColumns={{
         base: "1fr",
-        lg: "250px 1fr",
+        lg: " 1fr 250px",
       }}
     >
       <GridItem area="nav">
@@ -43,7 +43,7 @@ function App() {
         </HStack>
       </GridItem>
       <Show when={isLg}>
-        <GridItem area="side" paddingX={5}>
+        <GridItem area="side" paddingX={5} bg={"gray.200"}>
           <Categories
             selectedCategory={selectedCategory}
             onSelectCategory={setSelectedCategory}

@@ -8,7 +8,7 @@ interface Props {
 }
 
 const SofaNavBar = ({ onBack, name }: Props) => (
-  <Flex align="center" mb={4} justify="space-between">
+  <Flex align="center" mb={4} justify="space-between" p={4}>
     <Icon
       aria-label="Back to main menu"
       onClick={onBack}
