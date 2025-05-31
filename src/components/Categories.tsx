@@ -1,5 +1,4 @@
 import { Image, List, ListItem, HStack, Text } from "@chakra-ui/react";
-import { useColorModeValue } from "../components/ui/color-mode";
 import bed from "../assets/icons/bed.png";
 import classic from "../assets/icons/classic.png";
 import couch from "../assets/icons/couch.png";
@@ -50,8 +49,8 @@ const Categories = ({
     lShape: "ال",
   };
 
-  const bgColor = useColorModeValue("gray.100", "gray.700");
-  const selectedBg = useColorModeValue("blue.200", "blue.700");
+  const bgColor = "gray.100";
+  const selectedBg = "blue.200";
 
   return (
     <List.Root gap={4}>
@@ -66,9 +65,7 @@ const Categories = ({
             borderRadius="md"
             backgroundColor={isSelected ? selectedBg : bgColor}
             _hover={{
-              backgroundColor: isSelected
-                ? selectedBg
-                : useColorModeValue("gray.200", "gray.600"),
+              backgroundColor: isSelected ? selectedBg : "gray.200",
             }}
             cursor={"pointer"}
             onClick={() => onSelectCategory(value)}

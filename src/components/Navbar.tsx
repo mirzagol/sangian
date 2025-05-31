@@ -1,5 +1,4 @@
 import { HStack, Image, Text, Spacer } from "@chakra-ui/react";
-import { ColorModeButton } from "../components/ui/color-mode";
 import logo from "../assets/logo.webp"; // Adjust the path as necessary
 
 export default function Navbar({ children }: { children: React.ReactNode }) {
@@ -11,7 +10,6 @@ export default function Navbar({ children }: { children: React.ReactNode }) {
           مبلمان سنگیان
         </Text>
         <Spacer />
-        <ColorModeButton />
       </HStack>
       {children}
     </>

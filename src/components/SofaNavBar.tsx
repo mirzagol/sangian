@@ -1,6 +1,5 @@
 import { Flex, Heading, Icon } from "@chakra-ui/react";
 import { MdArrowBack } from "react-icons/md";
-import { ColorModeButton } from "../components/ui/color-mode";
 
 interface Props {
   onBack: () => void;
@@ -19,7 +18,6 @@ const SofaNavBar = ({ onBack, name }: Props) => (
       <MdArrowBack />
     </Icon>
     <Heading size="md">{name}</Heading>
-    <ColorModeButton />
   </Flex>
 );
 
