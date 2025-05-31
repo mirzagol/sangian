@@ -49,8 +49,10 @@ const Categories = ({
     lShape: "ال",
   };
 
-  const bgColor = "gray.100";
+  const bgColor = "gray.200";
   const selectedBg = "blue.200";
+  const hoverBg = "white";
+  const textColor = "gray.800";
 
   return (
     <List.Root gap={4}>
@@ -65,12 +67,13 @@ const Categories = ({
             borderRadius="md"
             backgroundColor={isSelected ? selectedBg : bgColor}
             _hover={{
-              backgroundColor: isSelected ? selectedBg : "gray.200",
+              backgroundColor: isSelected ? selectedBg : hoverBg,
             }}
             cursor={"pointer"}
             onClick={() => onSelectCategory(value)}
+            color={textColor}
           >
-            <HStack>
+            <HStack dir="rtl">
               <Image
                 src={category.icon}
                 alt={category.name}

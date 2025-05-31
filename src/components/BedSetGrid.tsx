@@ -15,6 +15,7 @@ const BedSetGrid = () => {
       columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
       paddingX="10px"
       gap={3}
+      style={{ direction: "rtl" }} // Stack items from right
     >
       {isLoading &&
         skeletons.map((skeleton) => <BedSetSkeleton key={skeleton} />)}

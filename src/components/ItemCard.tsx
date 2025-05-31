@@ -22,7 +22,16 @@ const ItemCard = ({ sofa }: Props) => {
         </Card.Title>
       </Card.Body>
       <Card.Footer padding="10px">
-        <List.Root gap={2} dir="rtl" textAlign="right">
+        <List.Root
+          gap={2}
+          paddingRight={2}
+          dir="rtl"
+          textAlign="right"
+          minHeight="48px" // Reserve space for up to 2 items (2 x 24px)
+          display="flex"
+          flexDirection="column"
+          justifyContent="flex-end"
+        >
           {sofa.types.map((type, index) => (
             <ListItem key={index} fontSize="sm" fontWeight="thin">
               {type}
