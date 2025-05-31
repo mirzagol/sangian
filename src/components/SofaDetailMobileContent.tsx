@@ -1,10 +1,12 @@
 import { useRef, useState, useEffect } from "react";
-import { Box, AspectRatio, Button } from "@chakra-ui/react";
+import { Box, AspectRatio } from "@chakra-ui/react";
 import SofaNavBar from "./SofaNavBar";
 import SofaImageSlider from "./SofaImageSlider";
 import SofaColorPickers from "./SofaColorPickers";
 import SofaDescription from "./SofaDescription";
 import Skeleton from "react-loading-skeleton";
+import Footer from "./Footer";
+import ConfirmButton from "./ConfirmButton";
 
 const GAP_DEFAULT = 24; // px
 
@@ -37,80 +39,88 @@ const SofaDetailMobileContent = ({
     <Box bg="gray.50" minH="100vh" display="flex" flexDirection="column">
       {/* Top NavBar */}
       <Box>
-        <SofaNavBar
-          onBack={() => navigate("/")}
-          name={info?.model_name || ""}
-        />
+        <SofaNavBar onBack={() => navigate("/")} />
       </Box>
-      {/* Fixed 16:9 Image Slider with gap from screen edges */}
-      <Box position="relative" mx={2} mt={GAP_DEFAULT}>
-        <AspectRatio ratio={16 / 9}>
-          {imagesLoading ? (
-            <Skeleton height="100%" />
-          ) : (
-            info && <SofaImageSlider images={images} name={info.model_name} />
-          )}
-        </AspectRatio>
-        {/* Blurry overlay when scrolled */}
+      {/* Image fixed at top */}
+      <Box position="relative" width="100%">
+        {/* Image Slider */}
         <Box
-          pointerEvents="none"
-          position="absolute"
-          inset={0}
-          bg="rgba(255,255,255,0.5)"
-          style={{
-            backdropFilter: scrolled ? "blur(8px)" : "none",
-            opacity: scrolled ? 1 : 0,
-            transition: "backdrop-filter 0.4s, opacity 0.4s",
-          }}
-        />
-      </Box>
-      {/* Card-like Section with gap from image */}
-      <Box
-        ref={cardRef}
-        bg="white"
-        borderRadius="2xl"
-        boxShadow="md"
-        mt={GAP_DEFAULT}
-        mx={2}
-        p={5}
-        zIndex={1}
-        position="relative"
-        display="flex"
-        flexDirection="column"
-        gap={4}
-        transition="margin-top 0.4s"
-      >
-        {/* Model Name */}
-        <Box textAlign="center" fontSize="2xl" fontWeight="bold" mb={2}>
-          {info?.model_name}
-        </Box>
-        {/* Sofa Color Pickers */}
-        <SofaColorPickers
-          frames={frames}
-          fabrics={fabrics}
-          selectedFrame={selectedFrame}
-          selectedFabric={selectedFabric}
-          onFrameSelect={setSelectedFrame}
-          onFabricSelect={setSelectedFabric}
-        />
-        {/* Description */}
-        <SofaDescription description={info?.description || ""} />
-        {/* Confirm Button */}
-        <Button
-          mt={6}
-          mb={2}
-          size="lg"
-          width="100%"
-          borderRadius="full"
-          bg="gray.800"
-          color="white"
-          fontWeight="bold"
-          fontSize="xl"
-          _hover={{ bg: "gray.900" }}
+          position="sticky"
+          top={0}
+          borderRadius="2xl"
+          mx={2}
+          ref={cardRef}
+          boxShadow="md"
+          flexDirection="column"
+          gap={4}
+          zIndex={1}
+          overflow="hidden"
+          width="calc(100% - 16px)" // Ensure full width minus margin
+          marginBottom={4}
+          bg="white"
         >
-          تایید
-        </Button>
+          <AspectRatio ratio={16 / 9} width="100%">
+            {imagesLoading ? (
+              <Skeleton height="100%" />
+            ) : (
+              info && <SofaImageSlider images={images} name={info.model_name} />
+            )}
+          </AspectRatio>
+          {/* Blurry overlay when scrolled */}
+          <Box
+            pointerEvents="none"
+            position="absolute"
+            inset={0}
+            bg="rgba(255,255,255,0.5)"
+            style={{
+              backdropFilter: scrolled ? "blur(8px)" : "none",
+              opacity: scrolled ? 1 : 0,
+              transition: "backdrop-filter 0.4s, opacity 0.4s",
+            }}
+            zIndex={2}
+          />
+        </Box>
+        {/* Card-like Section */}
+        <Box
+          position="relative"
+          bg="white"
+          borderRadius="2xl"
+          boxShadow="md"
+          mt={`-${GAP_DEFAULT / 2}px`} // negative margin to overlap the image
+          mx={2}
+          p={5}
+          zIndex={3}
+          width="calc(100% - 16px)"
+          margin="0 auto"
+          display="flex"
+          flexDirection="column"
+          gap={4}
+          transition="all 0.4s"
+          style={{
+            transform: scrolled ? "translateY(-8px) scale(1.01)" : "none",
+            transition: "all 0.4s",
+          }}
+        >
+          {/* Model Name */}
+          <Box textAlign="center" fontSize="2xl" fontWeight="bold" mb={2}>
+            {info?.model_name}
+          </Box>
+          {/* Sofa Color Pickers */}
+          <SofaColorPickers
+            frames={frames}
+            fabrics={fabrics}
+            selectedFrame={selectedFrame}
+            selectedFabric={selectedFabric}
+            onFrameSelect={setSelectedFrame}
+            onFabricSelect={setSelectedFabric}
+          />
+          {/* Description */}
+          <SofaDescription description={info?.description || ""} />
+          {/* Confirm Button */}
+          <ConfirmButton />
+        </Box>
       </Box>
+      <Footer />
     </Box>
   );
 };
