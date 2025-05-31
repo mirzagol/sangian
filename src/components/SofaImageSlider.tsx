@@ -126,7 +126,7 @@ const SofaImageSlider = ({ images, name }: Props) => {
     <Box
       position="relative"
       padding={0}
-      borderRadius={{ base: "0 0 100px 100px", lg: "xl" }} // <-- Only bottom corners rounded on mobile
+      borderRadius={"2xl"} // <-- Only bottom corners rounded on mobile
       overflow="hidden"
       boxShadow={{ lg: "md" }}
       bg={{ lg: "gray.50" }}
