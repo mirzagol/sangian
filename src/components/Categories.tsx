@@ -1,10 +1,7 @@
 import { Image, List, ListItem, HStack, Text } from "@chakra-ui/react";
-import bed from "../assets/icons/bed.png";
 import classic from "../assets/icons/classic.png";
 import couch from "../assets/icons/couch.png";
 import diningTable from "../assets/icons/diningTable.png";
-import lShape from "../assets/icons/l-shape.png";
-import other from "../assets/icons/other.png";
 import sofaBed from "../assets/icons/sofaBed.png";
 import table from "../assets/icons/table.png";
 import cushion from "../assets/icons/cushion.png";
@@ -26,26 +23,20 @@ const Categories = ({
 }: CategoriesProps) => {
   const data: category[] = [
     { name: "couch", persianName: "مبل راحتی", icon: couch },
-    { name: "classic", persianName: "مبل سلطنتی", icon: classic },
+    { name: "classic", persianName: "مبل کلاسیک", icon: classic },
     { name: "sofaBed", persianName: "مبل تخت خواب شو", icon: sofaBed },
-    { name: "lShape", persianName: "مبل ال", icon: lShape },
     { name: "diningTable", persianName: "غذاخوری", icon: diningTable },
-    { name: "bed", persianName: "سرویس خواب", icon: bed },
     { name: "table", persianName: "جلو مبلی و عسلی", icon: table },
     { name: "cushion", persianName: "کوسن", icon: cushion },
-    { name: "other", persianName: "سایر", icon: other },
   ];
 
   // Map English name to the value you use in onSelectCategory
   const categoryValueMap: Record<string, string> = {
     diningTable: "diningTable",
-    bed: "bed",
     table: "table",
     cushion: "cushion",
-    other: "other",
     couch: "راحتی",
-    classic: "سلطنتی",
-    sofaBed: "تخت خواب شو",
+    classic: "کلاسیک",
     lShape: "ال",
   };
 

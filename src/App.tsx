@@ -80,14 +80,10 @@ function App() {
           {/* Added paddingTop */}
           {selectedCategory === "diningTable" ? (
             <DiningTableGrid />
-          ) : selectedCategory === "bed" ? (
-            <BedSetGrid />
           ) : selectedCategory === "table" ? (
             <CoffeeTableGrid />
           ) : selectedCategory === "cushion" ? (
             <CushionGrid />
-          ) : selectedCategory === "other" ? (
-            <OtherGrid />
           ) : (
             <SofaGrid selectedCategory={selectedCategory} />
           )}
