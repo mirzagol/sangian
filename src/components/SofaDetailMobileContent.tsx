@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { Box, AspectRatio } from "@chakra-ui/react";
-import SofaNavBar from "./SofaNavBar";
+import ItemNavBar from "./ItemNavBar";
 import SofaImageSlider from "./SofaImageSlider";
 import SofaColorPickers from "./SofaColorPickers";
 import SofaDescription from "./SofaDescription";
@@ -39,7 +39,7 @@ const SofaDetailMobileContent = ({
     <Box bg="gray.50" minH="100vh" display="flex" flexDirection="column">
       {/* Top NavBar */}
       <Box>
-        <SofaNavBar onBack={() => navigate("/")} />
+        <ItemNavBar onBack={() => navigate("/catalog")} />
       </Box>
       {/* Image fixed at top */}
       <Box position="relative" width="100%">

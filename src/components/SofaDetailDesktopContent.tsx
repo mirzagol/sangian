@@ -1,5 +1,5 @@
 import { Box, Grid, AspectRatio } from "@chakra-ui/react";
-import SofaNavBar from "./SofaNavBar";
+import ItemNavBar from "./ItemNavBar";
 import SofaImageSlider from "./SofaImageSlider";
 import SofaColorPickers from "./SofaColorPickers";
 import SofaDescription from "./SofaDescription";
@@ -22,7 +22,7 @@ const SofaDetailDesktopContent = ({
   <Box display="flex" flexDirection="column" minHeight="100vh" bg="gray.50">
     <Box flex="1">
       <Box paddingX={4}>
-        <SofaNavBar onBack={() => navigate("/")} />
+        <ItemNavBar onBack={() => navigate("/catalog")} />
         <Grid templateColumns="1fr 2fr" gap={6} alignItems="start">
           <Box order={2} borderRadius="2xl">
             {imagesLoading ? (

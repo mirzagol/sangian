@@ -5,7 +5,7 @@ interface Props {
   onBack: () => void;
 }
 
-const SofaNavBar = ({ onBack }: Props) => (
+const ItemNavBar = ({ onBack }: Props) => (
   <Flex align="center" justify="space-between" p={4}>
     <Icon
       aria-label="Back to main menu"
@@ -19,4 +19,4 @@ const SofaNavBar = ({ onBack }: Props) => (
   </Flex>
 );
 
-export default SofaNavBar;
+export default ItemNavBar;
