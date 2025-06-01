@@ -34,16 +34,6 @@ const Categories = ({
     { name: "cushion", persianName: "کوسن", icon: cushion },
   ];
 
-  // Map English name to the value you use in onSelectCategory
-  const categoryValueMap: Record<string, string> = {
-    diningTable: "diningTable",
-    table: "table",
-    cushion: "cushion",
-    couch: "راحتی",
-    classic: "کلاسیک",
-    lShape: "ال",
-  };
-
   const bgColor = "gray.200";
   const selectedBg = "blue.200";
   const hoverBg = "white";
@@ -52,8 +42,7 @@ const Categories = ({
   return (
     <List.Root gap={4}>
       {data.map((category) => {
-        const value = categoryValueMap[category.name];
-        const isSelected = selectedCategory === value;
+        const isSelected = selectedCategory === category.name;
         return (
           <ListItem
             key={category.name}
@@ -65,7 +54,10 @@ const Categories = ({
               backgroundColor: isSelected ? selectedBg : hoverBg,
             }}
             cursor={"pointer"}
-            onClick={() => onSelectCategory(value)}
+            onClick={() => {
+              onSelectCategory(category.name);
+              navigate(`/catalog?category=${category.name}`);
+            }}
             color={textColor}
           >
             <HStack dir="rtl">

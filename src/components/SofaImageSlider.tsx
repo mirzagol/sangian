@@ -128,7 +128,7 @@ const SofaImageSlider = ({ images, name }: Props) => {
     <Box
       position="relative"
       padding={0}
-      borderRadius={"2xl"} // <-- Only bottom corners rounded on mobile
+      borderRadius={"2xl"}
       overflow="hidden"
       boxShadow={{ lg: "md" }}
       bg={{ lg: "gray.50" }}
@@ -138,13 +138,13 @@ const SofaImageSlider = ({ images, name }: Props) => {
       aspectRatio="16 / 9"
       width="100%"
       maxW="100%"
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-      onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
+      onTouchStart={images.length > 1 ? handleTouchStart : undefined}
+      onTouchMove={images.length > 1 ? handleTouchMove : undefined}
+      onTouchEnd={images.length > 1 ? handleTouchEnd : undefined}
+      onMouseDown={images.length > 1 ? handleMouseDown : undefined}
+      onMouseUp={images.length > 1 ? handleMouseUp : undefined}
       userSelect="none"
-      cursor={isAnimating ? "wait" : "pointer"}
+      cursor={isAnimating || images.length === 1 ? "default" : "pointer"}
     >
       <SliderImage
         src={images[current]}

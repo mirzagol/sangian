@@ -13,8 +13,25 @@ const SofaGrid = ({ selectedCategory }: SofaGridProps) => {
   const { sofas, error, isLoading } = useSofas();
   const navigate = useNavigate();
 
-  const filteredSofas = selectedCategory
-    ? sofas.filter((sofa) => sofa.types.includes(selectedCategory)) // Filter sofas by category
+  const categoryEnglishToPersian: Record<string, string> = {
+    couch: "راحتی",
+    classic: "کلاسیک",
+    lShape: "ال",
+  };
+
+  const categoryPersianToEnglish: Record<string, string> = {
+    راحتی: "couch",
+    کلاسیک: "classic",
+    ال: "lShape",
+  };
+
+  const filterCategory =
+    selectedCategory && categoryEnglishToPersian[selectedCategory]
+      ? categoryEnglishToPersian[selectedCategory]
+      : selectedCategory;
+
+  const filteredSofas = filterCategory
+    ? sofas.filter((sofa) => sofa.types.includes(filterCategory)) // Filter sofas by category
     : sofas;
 
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -40,7 +57,14 @@ const SofaGrid = ({ selectedCategory }: SofaGridProps) => {
         <ItemCardContainer key={sofa.id}>
           <div
             style={{ cursor: "pointer" }}
-            onClick={() => navigate(`/sofa/${sofa.id}`)}
+            onClick={() => {
+              // Always use English category in URL
+              const englishCategory =
+                selectedCategory && categoryPersianToEnglish[selectedCategory]
+                  ? categoryPersianToEnglish[selectedCategory]
+                  : selectedCategory || "";
+              navigate(`/sofa/${sofa.id}?category=${englishCategory}`);
+            }}
           >
             <ItemCard sofa={sofa} />
           </div>

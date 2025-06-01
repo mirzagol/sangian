@@ -1,10 +1,12 @@
 import { SimpleGrid, Text } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 import useCoffeeTables from "../hooks/useCoffeeTables";
 import CoffeeTableCard from "./CoffeeTableCard";
 import CoffeeTableSkeleton from "./CoffeeTableSkeleton";
 
 const CoffeeTableGrid = () => {
   const { coffeeTables, error, isLoading } = useCoffeeTables();
+  const navigate = useNavigate();
 
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8];
 
@@ -21,7 +23,15 @@ const CoffeeTableGrid = () => {
         skeletons.map((skeleton) => <CoffeeTableSkeleton key={skeleton} />)}
       {!isLoading &&
         coffeeTables.map((coffeeTable) => (
-          <CoffeeTableCard key={coffeeTable.id} coffeeTable={coffeeTable} />
+          <div
+            key={coffeeTable.id}
+            style={{ cursor: "pointer" }}
+            onClick={() =>
+              navigate(`/coffeetable/${coffeeTable.id}?category=table`)
+            }
+          >
+            <CoffeeTableCard coffeeTable={coffeeTable} />
+          </div>
         ))}
     </SimpleGrid>
   );

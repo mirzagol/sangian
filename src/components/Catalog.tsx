@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Grid,
   GridItem,
@@ -7,6 +7,7 @@ import {
   useBreakpointValue,
   Box,
 } from "@chakra-ui/react";
+import { useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
 import SofaGrid from "./SofaGrid";
 import Categories from "./Categories";
@@ -17,8 +18,19 @@ import MobileCategoriesDrawer from "./MobileCategoriesDrawer";
 import Footer from "./Footer";
 
 function Catalog() {
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const initialCategory = params.get("category");
   const isLg = useBreakpointValue({ base: false, lg: true });
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(
+    initialCategory
+  );
+
+  // Sync selectedCategory with URL query param on every change
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    setSelectedCategory(params.get("category"));
+  }, [location.search]);
 
   return (
     <Box minHeight="100vh" display="flex" flexDirection="column">

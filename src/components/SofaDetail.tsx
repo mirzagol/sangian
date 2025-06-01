@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import { useBreakpointValue } from "@chakra-ui/react";
 import useSofaOptions, { Frame, Fabric } from "../hooks/useSofaOptions";
@@ -12,6 +12,9 @@ import SofaDetailDesktopContent from "./SofaDetailDesktopContent";
 const SofaDetail = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const category = params.get("category") || "";
   const isMobile = useBreakpointValue({ base: true, lg: false }); // <-- Move here
 
   // Get all available frames/fabrics for this model
@@ -51,10 +54,25 @@ const SofaDetail = () => {
   }
 
   // Show only image skeleton when changing colors
+  const categoryMap: Record<string, string> = {
+    راحتی: "couch",
+    کلاسیک: "classic",
+    ال: "lShape",
+  };
+  const englishCategory = categoryMap[category] || category || "";
+
+  const goBackToCatalog = () => {
+    if (englishCategory) {
+      navigate(`/catalog?category=${englishCategory}`);
+    } else {
+      navigate("/catalog");
+    }
+  };
+
   if (isMobile) {
     return (
       <SofaDetailMobileContent
-        navigate={navigate}
+        navigate={goBackToCatalog}
         info={info}
         images={images}
         imagesLoading={imagesLoading}
@@ -69,7 +87,7 @@ const SofaDetail = () => {
   } else {
     return (
       <SofaDetailDesktopContent
-        navigate={navigate}
+        navigate={goBackToCatalog}
         info={info}
         images={images}
         imagesLoading={imagesLoading}
