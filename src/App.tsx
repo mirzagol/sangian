@@ -11,10 +11,8 @@ import Navbar from "./components/Navbar";
 import SofaGrid from "./components/SofaGrid";
 import Categories from "./components/Categories";
 import DiningTableGrid from "./components/DiningTableGrid";
-import BedSetGrid from "./components/BedSetGrid";
 import CoffeeTableGrid from "./components/CoffeeTableGrid";
 import CushionGrid from "./components/CushionGrid";
-import OtherGrid from "./components/OtherGrid";
 import MobileCategoriesDrawer from "./components/MobileCategoriesDrawer";
 import Footer from "./components/Footer";
 

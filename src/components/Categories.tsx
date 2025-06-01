@@ -1,10 +1,13 @@
-import { Image, List, ListItem, HStack, Text } from "@chakra-ui/react";
+import { Image, List, ListItem, HStack, Text, Box } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 import classic from "../assets/icons/classic.png";
 import couch from "../assets/icons/couch.png";
 import diningTable from "../assets/icons/diningTable.png";
-import sofaBed from "../assets/icons/sofaBed.png";
+import lShape from "../assets/icons/l-shape.png";
 import table from "../assets/icons/table.png";
 import cushion from "../assets/icons/cushion.png";
+import contact from "../assets/icons/contact.png";
+import contract from "../assets/icons/contract.png";
 
 interface category {
   name: string;
@@ -21,10 +24,11 @@ const Categories = ({
   onSelectCategory,
   selectedCategory,
 }: CategoriesProps) => {
+  const navigate = useNavigate();
   const data: category[] = [
     { name: "couch", persianName: "مبل راحتی", icon: couch },
     { name: "classic", persianName: "مبل کلاسیک", icon: classic },
-    { name: "sofaBed", persianName: "مبل تخت خواب شو", icon: sofaBed },
+    { name: "lShape", persianName: "مبل ال", icon: lShape },
     { name: "diningTable", persianName: "غذاخوری", icon: diningTable },
     { name: "table", persianName: "جلو مبلی و عسلی", icon: table },
     { name: "cushion", persianName: "کوسن", icon: cushion },
@@ -76,6 +80,37 @@ const Categories = ({
           </ListItem>
         );
       })}
+      <Box height="1px" backgroundColor="gray.300" my={3} />
+      <ListItem
+        listStyleType={"none"}
+        paddingY="5px"
+        borderRadius="md"
+        backgroundColor={bgColor}
+        _hover={{ backgroundColor: hoverBg }}
+        cursor={"pointer"}
+        onClick={() => navigate("/contact")}
+        color={textColor}
+      >
+        <HStack dir="rtl">
+          <Image src={contact} alt="contact" boxSize="30px" padding="5px" />
+          <Text paddingX={3}>تماس با ما</Text>
+        </HStack>
+      </ListItem>
+      <ListItem
+        listStyleType={"none"}
+        paddingY="5px"
+        borderRadius="md"
+        backgroundColor={bgColor}
+        _hover={{ backgroundColor: hoverBg }}
+        cursor={"pointer"}
+        onClick={() => navigate("/contract")}
+        color={textColor}
+      >
+        <HStack dir="rtl">
+          <Image src={contract} alt="contract" boxSize="30px" padding="5px" />
+          <Text paddingX={3}>طرفین قرارداد</Text>
+        </HStack>
+      </ListItem>
     </List.Root>
   );
 };
