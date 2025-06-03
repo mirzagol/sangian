@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Vazirmatn");
+html {
+  scroll-behavior: smooth;
+}
 body,
 h1,
 h2,
