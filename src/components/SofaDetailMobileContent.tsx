@@ -125,6 +125,11 @@ const SofaDetailMobileContent = ({
       <SofaCoverDialog
         isOpen={isDialogOpen}
         onClose={() => setDialogOpen(false)}
+        image={images?.[0]} // first image
+        name={info?.model_name}
+        frame={selectedFrame?.name}
+        fabric={selectedFabric?.name}
+        id={info?.id}
       >
         {/* Add your cover size details here */}
       </SofaCoverDialog>
