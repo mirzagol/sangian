@@ -25,7 +25,12 @@ const Contact = () => {
 
   return (
     <>
-      <Flex minH="100vh" align="center" justify="center" bg="gray.50">
+      <Flex
+        minH="100vh"
+        align="center"
+        justify="center"
+        bg="radial-gradient(circle at 70% 10%, #e0f7fa 0%, transparent 60%), radial-gradient(circle at 20% 80%, #ffe0f0 0%, transparent 70%), #f5f6fa"
+      >
         <Box
           maxW={"2xl"}
           mx="auto"
