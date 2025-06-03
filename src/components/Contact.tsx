@@ -38,6 +38,8 @@ const Contact = () => {
           px={4}
           mb={10}
           mt={10}
+          ml={4}
+          mr={4}
           p={{ base: 4, md: 8 }}
           borderRadius="2xl"
           boxShadow="2xl"
