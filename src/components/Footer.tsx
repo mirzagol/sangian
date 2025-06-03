@@ -11,9 +11,10 @@ const Footer = () => (
     fontSize="sm"
     color="gray.600"
     mt="auto"
+    dir="rtl" // RTL direction
   >
-    {/* Add your footer content here */}
-    <Text>© {new Date().getFullYear()} مبلمان سنگیان. همه حقوق محفوظ است.</Text>
+    <Text dir="ltr">© {new Date().getFullYear()} </Text>
+    <Text>مبلمان سنگیان. همه حقوق محفوظ است.</Text>
   </Box>
 );
 
