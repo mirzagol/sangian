@@ -7,6 +7,7 @@ import SofaDescription from "./SofaDescription";
 import Skeleton from "react-loading-skeleton";
 import Footer from "./Footer";
 import ConfirmButton from "./ConfirmButton";
+import SofaCoverDialog from "./SofaCoverDialog";
 
 const GAP_DEFAULT = 24; // px
 
@@ -23,6 +24,7 @@ const SofaDetailMobileContent = ({
   setSelectedFabric,
 }: any) => {
   const [scrolled, setScrolled] = useState(false);
+  const [isDialogOpen, setDialogOpen] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -117,9 +119,15 @@ const SofaDetailMobileContent = ({
           {/* Description */}
           <SofaDescription description={info?.description || ""} />
           {/* Confirm Button */}
-          <ConfirmButton />
+          <ConfirmButton onClick={() => setDialogOpen(true)} />
         </Box>
       </Box>
+      <SofaCoverDialog
+        isOpen={isDialogOpen}
+        onClose={() => setDialogOpen(false)}
+      >
+        {/* Add your cover size details here */}
+      </SofaCoverDialog>
       <Footer />
     </Box>
   );
