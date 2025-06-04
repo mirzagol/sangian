@@ -7,6 +7,7 @@ services:
       context: .
       dockerfile: dockerfile
     ports:
-      - "127.0.0.1:7001:80"
+      - "0.0.0.0:8081:80"
+      # - "127.0.0.1:7001:80"
     environment:
       - NODE_ENV=production
