@@ -211,7 +211,7 @@ const LandingPage = () => {
               </Button>
               <Button
                 colorScheme="teal"
-                variant="outline"
+                variant="solid"
                 borderRadius="xl"
                 onClick={() => (window.location.href = "/contract")}
                 width={{ base: "100%", sm: "auto" }}

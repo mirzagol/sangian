@@ -6,7 +6,7 @@ import {
   Link,
   Icon,
   Flex,
-  Button,
+  HStack,
 } from "@chakra-ui/react";
 import {
   FaInstagram,
@@ -14,9 +14,12 @@ import {
   FaMapMarkerAlt,
   FaPhoneAlt,
 } from "react-icons/fa";
+import { SiGooglemaps } from "react-icons/si"; // Add this line
 import { useNavigate } from "react-router-dom";
 import { IoMdArrowBack } from "react-icons/io";
 import Footer from "./Footer";
+import baladLogo from "../assets/icons/balad.png";
+import neshanLogo from "../assets/icons/neshan.png";
 
 const Contact = () => {
   const cardBg = "white";
@@ -156,6 +159,7 @@ const Contact = () => {
                   p={2}
                   display="flex"
                   alignItems="center"
+                  justifyContent="center"
                 >
                   <Icon as={FaMapMarkerAlt} color="red.400" boxSize={5} />
                 </Box>
@@ -166,6 +170,42 @@ const Contact = () => {
                   <Text color="gray.600" fontSize="sm">
                     یافت آباد، مجتمع تجاری کلاسیک، طبقه زیر همکف
                   </Text>
+                  <HStack p={2}>
+                    <Link
+                      href="https://balad.ir/p/5MSsBkqCWzBgQ4"
+                      target="_blank"
+                      rel="noopener"
+                      style={{ textDecoration: "none" }}
+                    >
+                      <img
+                        src={baladLogo}
+                        alt="Balad"
+                        style={{ width: 30, height: 30 }}
+                      />
+                    </Link>
+
+                    <Link
+                      href="https://maps.app.goo.gl/phhvfnpv9hRVZwZJ6"
+                      target="_blank"
+                      rel="noopener"
+                      style={{ textDecoration: "none" }}
+                    >
+                      <img
+                        src={neshanLogo}
+                        alt="Neshan"
+                        style={{ width: 30, height: 30 }}
+                      />
+                    </Link>
+
+                    <Link
+                      href="https://neshan.org/maps/places/81818536fc73c4bcd3a339134c6c6bdf#c35.661-51.349-16z-0p"
+                      target="_blank"
+                      rel="noopener"
+                      style={{ textDecoration: "none" }}
+                    >
+                      <Icon as={SiGooglemaps} color="teal.400" boxSize={7} />
+                    </Link>
+                  </HStack>
                 </Box>
               </Flex>
               <Flex align="center" gap={3} bg={iconBg} p={3} borderRadius="lg">
@@ -185,7 +225,7 @@ const Contact = () => {
                   <Stack direction="row" p={2} mt={1}>
                     <Link
                       href="tel:02166234095"
-                      color="blue.600"
+                      color="gray.600"
                       fontWeight="bold"
                       dir="ltr"
                     >
@@ -194,7 +234,7 @@ const Contact = () => {
                     <Text color="gray.400">|</Text>
                     <Link
                       href="tel:09112581858"
-                      color="blue.600"
+                      color="gray.600"
                       fontWeight="bold"
                       dir="ltr"
                     >
@@ -219,7 +259,7 @@ const Contact = () => {
                   </Text>
                   <Link
                     href="https://wa.me/989304442972"
-                    color="green.600"
+                    color="gray.600"
                     fontWeight="bold"
                     dir="ltr"
                     fontSize="sm"
@@ -244,45 +284,12 @@ const Contact = () => {
                   </Text>
                   <Link
                     href="https://instagram.com/sangianfurniture"
-                    color="pink.600"
+                    color="gray.600"
                     fontWeight="bold"
                     dir="ltr"
                     fontSize="sm"
                   >
                     sangianfurniture
-                  </Link>
-                </Box>
-              </Flex>
-              <Flex align="center" gap={3} bg={iconBg} p={3} borderRadius="lg">
-                <Box
-                  bg="teal.100"
-                  borderRadius="full"
-                  p={2}
-                  display="flex"
-                  alignItems="center"
-                >
-                  <Icon as={FaMapMarkerAlt} color="teal.500" boxSize={5} />
-                </Box>
-                <Box>
-                  <Text fontWeight="bold" color="gray.700">
-                    نمایش روی نقشه:
-                  </Text>
-                  <Link
-                    href="https://maps.app.goo.gl/phhvfnpv9hRVZwZJ6"
-                    target="_blank"
-                    rel="noopener"
-                    style={{ textDecoration: "none" }}
-                  >
-                    <Button
-                      colorScheme="teal"
-                      size="sm"
-                      variant="outline"
-                      mt={1}
-                      fontSize="sm"
-                      fontWeight="bold"
-                    >
-                      مشاهده نقشه
-                    </Button>
                   </Link>
                 </Box>
               </Flex>

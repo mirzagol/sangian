@@ -112,19 +112,12 @@ const LandingCategories = ({
       {/* Themed divider */}
       <Box
         width="100%"
-        py={3}
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-      >
-        <Box
-          width="70%"
-          height="4px"
-          borderRadius="full"
-          bgGradient="linear(to-l, teal.100, teal.300, teal.100)"
-          opacity={0.5}
-        />
-      </Box>
+        mx="auto"
+        height="1px"
+        borderRadius="full"
+        bg="gray.300"
+        marginY={2}
+      />
 
       {/* Other categories */}
       {otherCategories.map((category) => {

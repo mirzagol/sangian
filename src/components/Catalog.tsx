@@ -50,7 +50,14 @@ function Catalog() {
         }}
         height="100%"
       >
-        <GridItem area="nav" height="80px">
+        <GridItem
+          area="nav"
+          height="80px"
+          position={isLg ? "static" : "fixed"}
+          zIndex={1}
+          top={isLg ? undefined : 0}
+          width="100%"
+        >
           <HStack
             justifyContent="space-between"
             paddingRight={4}
