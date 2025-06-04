@@ -1,7 +1,7 @@
 import { Box, Heading, Text, Button, Image, Flex } from "@chakra-ui/react";
 import { useRef } from "react";
 import LandingCategories from "./LandingCategories";
-import bgImage from "../assets/BG.png";
+import bgImage from "../assets/BG.jpg";
 import Footer from "./Footer";
 
 const glassBoxStyle = {
