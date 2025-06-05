@@ -37,7 +37,13 @@ const useSofaImages = (
       )
       .then((res) => {
         // image_path is a stringified array
-        const imageArr: string[] = JSON.parse(res.data.image_path || "[]");
+        // The API returns image_path as a string of comma-separated URLs, not a JSON array.
+        // We need to split and trim the string to get an array of URLs.
+        const raw = res.data.image_path || "";
+        const imageArr: string[] = raw
+          .split(",")
+          .map((s: string) => s.trim().replace(/^"|"$/g, ""))
+          .filter(Boolean);
         setImages(imageArr);
         setInfo(res.data.sofa_info || null);
       })

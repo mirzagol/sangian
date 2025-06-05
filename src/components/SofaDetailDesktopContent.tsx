@@ -87,6 +87,7 @@ const SofaDetailDesktopContent = ({
         image={images?.[0]} // first image
         name={info?.model_name}
         frame={selectedFrame?.name}
+        fabricCode={selectedFabric?.code}
         fabric={selectedFabric?.name}
         id={info?.id}
       >

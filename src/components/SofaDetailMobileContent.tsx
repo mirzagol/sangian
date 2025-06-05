@@ -130,6 +130,7 @@ const SofaDetailMobileContent = ({
         frame={selectedFrame?.name}
         fabric={selectedFabric?.name}
         id={info?.id}
+        fabricCode={selectedFabric?.code}
       >
         {/* Add your cover size details here */}
       </SofaCoverDialog>

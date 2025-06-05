@@ -19,6 +19,7 @@ interface SofaCoverDialogProps {
   name?: string;
   frame?: string;
   fabric?: string;
+  fabricCode?: number;
   id?: number;
   children?: React.ReactNode;
 }
@@ -30,6 +31,7 @@ const SofaCoverDialog = ({
   name,
   frame,
   fabric,
+  fabricCode,
   id,
 }: SofaCoverDialogProps) => {
   const [firstName, setFirstName] = useState("");
@@ -152,7 +154,10 @@ const SofaCoverDialog = ({
                     جنس پایه: <b>{frame}</b>
                   </Text>
                   <Text fontSize="md" color="gray.600">
-                    پارچه: <b>{fabric}</b>
+                    پارچه:{" "}
+                    <b>
+                      {fabric} {fabricCode}
+                    </b>
                   </Text>
                 </Box>
                 <Box

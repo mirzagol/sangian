@@ -37,7 +37,7 @@ const SofaColorPickers = ({
               w="50px"
               h="50px"
               borderRadius="full"
-              bg={fabric.color}
+              bg={`#${fabric.color}`}
               border={
                 selectedFabric?.id === fabric.id
                   ? "3px solid #1976d2"
@@ -47,7 +47,7 @@ const SofaColorPickers = ({
               cursor="pointer"
               boxShadow={selectedFabric?.id === fabric.id ? "md" : "none"}
               onClick={() => onFabricSelect(fabric)}
-              title={fabric.name}
+              title={`${fabric.name} ${fabric.code}`}
             />
           ))}
         </Flex>
