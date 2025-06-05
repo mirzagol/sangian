@@ -71,7 +71,17 @@ const SofaColorPickers = ({
                 w="50px"
                 h="50px"
                 borderRadius="full"
-                bg="#8B4513"
+                bg={
+                  frame.id === 1
+                    ? "#825950"
+                    : frame.id === 2
+                    ? "#e1b2a6"
+                    : frame.id === 3
+                    ? "#8c5a55"
+                    : frame.id === 4
+                    ? "#232323"
+                    : "#8B4513"
+                }
                 border={
                   selectedFrame?.id === frame.id
                     ? "3px solid #1976d2"
