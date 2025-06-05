@@ -37,6 +37,11 @@ const SofaDetailMobileContent = ({
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    // Scroll to top smoothly when frame or fabric changes
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [selectedFrame, selectedFabric]);
+
   return (
     <Box bg="gray.50" minH="100vh" display="flex" flexDirection="column">
       {/* Top NavBar */}

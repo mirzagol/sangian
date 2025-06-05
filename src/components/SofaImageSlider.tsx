@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
-import { Box, useBreakpointValue } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
+//import {useBreakpointValue } from "@chakra-ui/react";}
 import SliderImage from "./SliderImage";
 import SliderArrow from "./SliderArrow";
 import SliderDots from "./SliderDots";
@@ -22,7 +23,7 @@ const SofaImageSlider = ({ images, name }: Props) => {
   const mouseStartX = useRef<number | null>(null);
   const mouseEndX = useRef<number | null>(null);
 
-  const isLg = useBreakpointValue({ base: false, lg: true });
+  //const isLg = useBreakpointValue({ base: false, lg: true });
 
   useEffect(() => {
     setCurrent(0);
@@ -155,20 +156,20 @@ const SofaImageSlider = ({ images, name }: Props) => {
       />
       {images.length > 1 && (
         <>
-          {isLg && (
+          {
             <SliderArrow
               direction="right"
               onClick={showPrev}
               disabled={isAnimating}
             />
-          )}
-          {isLg && (
+          }
+          {
             <SliderArrow
               direction="left"
               onClick={showNext}
               disabled={isAnimating}
             />
-          )}
+          }
           <SliderDots
             images={images}
             current={current}
