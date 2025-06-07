@@ -190,11 +190,7 @@ const Contact = () => {
                       rel="noopener"
                       style={{ textDecoration: "none" }}
                     >
-                      <img
-                        src={neshanLogo}
-                        alt="Neshan"
-                        style={{ width: 30, height: 30 }}
-                      />
+                      <Icon as={SiGooglemaps} color="teal.400" boxSize={7} />
                     </Link>
 
                     <Link
@@ -203,7 +199,11 @@ const Contact = () => {
                       rel="noopener"
                       style={{ textDecoration: "none" }}
                     >
-                      <Icon as={SiGooglemaps} color="teal.400" boxSize={7} />
+                      <img
+                        src={neshanLogo}
+                        alt="Neshan"
+                        style={{ width: 30, height: 30 }}
+                      />
                     </Link>
                   </HStack>
                 </Box>
