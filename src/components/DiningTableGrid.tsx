@@ -1,4 +1,4 @@
-import { SimpleGrid, Text } from "@chakra-ui/react";
+/*import { SimpleGrid, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import useDiningTables from "../hooks/useDiningTables";
 import DiningTableCard from "./DiningTableCard";
@@ -34,6 +34,38 @@ const DiningTableGrid = () => {
           </div>
         ))}
     </SimpleGrid>
+  );
+};
+
+export default DiningTableGrid;
+*/
+
+import { Box, Text } from "@chakra-ui/react";
+
+const DiningTableGrid = () => {
+  return (
+    <Box
+      bg="white"
+      width="100%"
+      maxW="500px"
+      mx="auto"
+      mt={10}
+      p={10}
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      minHeight="200px"
+    >
+      <Text
+        fontSize="3xl"
+        fontWeight="light"
+        color="gray.700"
+        textAlign="center"
+        style={{ direction: "rtl" }}
+      >
+        این صفحه بزودی اضافه میشود...
+      </Text>
+    </Box>
   );
 };
 
