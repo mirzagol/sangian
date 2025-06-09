@@ -42,26 +42,33 @@ const SofaColorPickers = ({
             انتخاب پارچه
           </Heading>
           <Flex wrap="wrap" gap={2} justify="flex-start" flexDirection="row">
-            {fabrics.map((fabric) => (
-              <Box
-                key={fabric.id}
-                w={iconSize}
-                h={iconSize}
-                borderRadius="full"
-                bg={`#${fabric.color}`}
-                border={
-                  selectedFabric?.id === fabric.id
-                    ? "3px solid #1976d2"
-                    : "2px solid #eee"
-                }
-                mb={1}
-                cursor="pointer"
-                boxShadow={selectedFabric?.id === fabric.id ? "md" : "none"}
-                onClick={() => onFabricSelect(fabric)}
-                title={`${fabric.name} ${fabric.code}`}
-                transition="box-shadow 0.2s, border 0.2s"
-              />
-            ))}
+            {fabrics.map((fabric) => {
+              const colors = fabric.color.split(",");
+              const bg =
+                colors.length === 2
+                  ? `linear-gradient(to top, #${colors[0]} 50%, #${colors[1]} 50%)`
+                  : `#${fabric.color}`;
+              return (
+                <Box
+                  key={fabric.id}
+                  w={iconSize}
+                  h={iconSize}
+                  borderRadius="full"
+                  bg={bg}
+                  border={
+                    selectedFabric?.id === fabric.id
+                      ? "3px solid #1976d2"
+                      : "2px solid #eee"
+                  }
+                  mb={1}
+                  cursor="pointer"
+                  boxShadow={selectedFabric?.id === fabric.id ? "md" : "none"}
+                  onClick={() => onFabricSelect(fabric)}
+                  title={`${fabric.name} ${fabric.code}`}
+                  transition="box-shadow 0.2s, border 0.2s"
+                />
+              );
+            })}
           </Flex>
         </Box>
       )}

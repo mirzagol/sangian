@@ -283,13 +283,13 @@ const Contact = () => {
                     اینستاگرام:
                   </Text>
                   <Link
-                    href="https://instagram.com/sangianfurniture"
+                    href="https://instagram.com/sangian.furniture"
                     color="gray.600"
                     fontWeight="bold"
                     dir="ltr"
                     fontSize="sm"
                   >
-                    sangianfurniture
+                    sangian.furniture
                   </Link>
                 </Box>
               </Flex>

@@ -137,13 +137,26 @@ const SofaCoverDialog = ({
                   gap={4}
                 >
                   {image && (
-                    <Box w="100%" mb={2} borderRadius="lg" overflow="hidden">
+                    <Box
+                      w="100%"
+                      mb={2}
+                      borderRadius="lg"
+                      overflow="hidden"
+                      maxW={{ base: "100%", xl: "350px" }}
+                      maxH={{ base: "220px", xl: "320px" }}
+                      display="flex"
+                      justifyContent="center"
+                      alignItems="center"
+                    >
                       <Image
                         src={image}
                         alt={name}
                         borderRadius="lg"
-                        objectFit="cover"
-                        minHeight="240px"
+                        objectFit="contain"
+                        width="100%"
+                        height="auto"
+                        maxH={{ base: "220px", xl: "320px" }}
+                        minH="120px"
                       />
                     </Box>
                   )}
