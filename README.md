@@ -2,6 +2,8 @@
 
 A modern, responsive furniture e-commerce web application built with **React**, **TypeScript**, **Vite**, and **Chakra UI**.
 
+**Live Site:** [https://sangian.ir](https://sangian.ir)
+
 ## Features
 
 - ⚡️ Fast development with Vite and HMR
