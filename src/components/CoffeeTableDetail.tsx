@@ -1,7 +1,8 @@
 import { useParams, useNavigate, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
 import { useBreakpointValue } from "@chakra-ui/react";
-import useCoffeeTables from "../hooks/useCoffeeTables";
+import { useState, useEffect } from "react";
+import useCoffeeTableOptions from "../hooks/useCoffeeTableOptions";
+import useCoffeeTableImages from "../hooks/useCoffeeTableImages";
 import CoffeeTableDetailMobileContent from "./CoffeeTableDetailMobileContent";
 import CoffeeTableDetailDesktopContent from "./CoffeeTableDetailDesktopContent";
 
@@ -11,44 +12,65 @@ const CoffeeTableDetail = () => {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const category = params.get("category") || "table";
-  const { coffeeTables } = useCoffeeTables();
-  const [selectedFrame, setSelectedFrame] = useState<any>(null);
   const isMobile = useBreakpointValue({ base: true, lg: false });
 
-  const coffeeTable = coffeeTables.find((t) => String(t.id) === id);
+  // Fetch options (frames) for this coffee table model
+  const {
+    options,
+    frames,
+    isLoading: optionsLoading,
+  } = useCoffeeTableOptions(id);
+  // Select first frame by default
+  const [selectedFrame, setSelectedFrame] = useState(frames[0] || null);
 
+  // Update selectedFrame if frames change (e.g. after fetch)
   useEffect(() => {
-    if (coffeeTable) setSelectedFrame({ id: 1, name: "پایه چوبی" });
-  }, [coffeeTable]);
+    if (
+      frames.length &&
+      (!selectedFrame || !frames.find((f) => f.id === selectedFrame.id))
+    ) {
+      setSelectedFrame(frames[0]);
+    }
+  }, [frames]);
 
-  if (!coffeeTable) return null;
+  // Fetch images for the selected frame
+  const {
+    images,
+    info,
+    isLoading: imagesLoading,
+  } = useCoffeeTableImages(id, selectedFrame?.id);
 
-  const images = [coffeeTable.image_path];
+  const goBackToCatalog = () => {
+    navigate(`/catalog?category=${category}`);
+  };
+
+  if (!info && !optionsLoading) return null;
+
+  // Helper to map option to info-like structure if needed
+  const mapOptionToInfo = (option: any) =>
+    option
+      ? {
+          id: option.id,
+          name: option.model_name,
+          imagePath: "",
+          frame: option.frame,
+        }
+      : null;
+
+  const ContentProps = {
+    navigate: goBackToCatalog,
+    info: info || mapOptionToInfo(options[0]), // fallback to mapped option if images/info not loaded yet
+    images,
+    imagesLoading: imagesLoading || optionsLoading,
+    frames,
+    selectedFrame,
+    setSelectedFrame,
+  };
 
   if (isMobile) {
-    return (
-      <CoffeeTableDetailMobileContent
-        navigate={() => navigate(`/catalog?category=${category}`)}
-        info={coffeeTable}
-        images={images}
-        imagesLoading={false}
-        frames={[{ id: 1, name: "پایه چوبی" }]}
-        selectedFrame={selectedFrame}
-        setSelectedFrame={setSelectedFrame}
-      />
-    );
+    return <CoffeeTableDetailMobileContent {...ContentProps} />;
   } else {
-    return (
-      <CoffeeTableDetailDesktopContent
-        navigate={() => navigate(`/catalog?category=${category}`)}
-        info={coffeeTable}
-        images={images}
-        imagesLoading={false}
-        frames={[{ id: 1, name: "پایه چوبی" }]}
-        selectedFrame={selectedFrame}
-        setSelectedFrame={setSelectedFrame}
-      />
-    );
+    return <CoffeeTableDetailDesktopContent {...ContentProps} />;
   }
 };
 

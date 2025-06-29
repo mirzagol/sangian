@@ -1,4 +1,3 @@
-import { useRef, useState, useEffect } from "react";
 import { Box, AspectRatio } from "@chakra-ui/react";
 import ItemNavBar from "./ItemNavBar";
 import SofaColorPickers from "./SofaColorPickers";
@@ -7,6 +6,8 @@ import Skeleton from "react-loading-skeleton";
 import Footer from "./Footer";
 import ConfirmButton from "./ConfirmButton";
 import SofaImageSlider from "./SofaImageSlider";
+import ItemCoverDialog from "./ItemCoverDialog";
+import { useState } from "react";
 
 const GAP_DEFAULT = 24;
 
@@ -20,22 +21,15 @@ const CoffeeTableDetailMobileContent = ({
   setSelectedFrame,
 }: any) => {
   const [scrolled, setScrolled] = useState(false);
-  const cardRef = useRef<HTMLDivElement>(null);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!cardRef.current) return;
-      const rect = cardRef.current.getBoundingClientRect();
-      setScrolled(rect.top <= GAP_DEFAULT);
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const handleConfirm = () => setDialogOpen(true);
+  const handleDialogClose = () => setDialogOpen(false);
 
   return (
     <Box bg="gray.50" minH="100vh" display="flex" flexDirection="column">
       <Box>
-        <ItemNavBar onBack={() => navigate("/catalog")} />
+        <ItemNavBar onBack={navigate} />
       </Box>
       <Box position="relative" width="100%">
         <Box
@@ -43,7 +37,6 @@ const CoffeeTableDetailMobileContent = ({
           top={0}
           borderRadius="2xl"
           mx={2}
-          ref={cardRef}
           boxShadow="md"
           flexDirection="column"
           gap={4}
@@ -57,7 +50,7 @@ const CoffeeTableDetailMobileContent = ({
             {imagesLoading ? (
               <Skeleton height="100%" />
             ) : (
-              <SofaImageSlider images={images} name={info.name} />
+              <SofaImageSlider images={images} name={info?.name || ""} />
             )}
           </AspectRatio>
           <Box
@@ -94,7 +87,7 @@ const CoffeeTableDetailMobileContent = ({
           }}
         >
           <Box textAlign="center" fontSize="2xl" fontWeight="bold" mb={2}>
-            {info.name}
+            {info?.name || <Skeleton width={120} />}
           </Box>
           <SofaColorPickers
             frames={frames}
@@ -104,8 +97,17 @@ const CoffeeTableDetailMobileContent = ({
             onFrameSelect={setSelectedFrame}
             onFabricSelect={() => {}}
           />
-          <SofaDescription description={info.description} />
-          <ConfirmButton />
+          <SofaDescription description={info?.description || ""} />
+          <ConfirmButton onClick={handleConfirm} />
+          <ItemCoverDialog
+            isOpen={dialogOpen}
+            onClose={handleDialogClose}
+            image={images?.[0]}
+            name={info?.name}
+            frame={selectedFrame?.name}
+            id={info?.id}
+            furnitureType="coffee_table"
+          />
         </Box>
       </Box>
       <Footer />
