@@ -5,8 +5,8 @@ const SofaDescription = ({ description }: { description?: string }) => (
     <Heading size="md" color="blue.900" mb={2} textAlign="right">
       توضیحات
     </Heading>
-    <Text textAlign="right" fontSize="md">
-      {description || "توضیحی برای این مبل ثبت نشده است."}
+    <Text textAlign="right" fontSize="md" dir="rtl">
+      {description || "توضیحی برای این محصول ثبت نشده است."}
     </Text>
   </Box>
 );

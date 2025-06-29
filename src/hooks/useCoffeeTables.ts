@@ -22,7 +22,7 @@ const useCoffeeTables = () => {
 
     setLoading(true);
     apiClient
-      .get<FetchCoffeeTableResponse>("/coffee-table/models", {
+      .get<FetchCoffeeTableResponse>("/coffee-table-models", {
         signal: controller.signal,
       })
       .then((res) => {
